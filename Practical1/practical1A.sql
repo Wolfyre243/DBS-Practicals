@@ -8,11 +8,18 @@ CREATE TABLE staff (
     staff_name VARCHAR(100) NOT NULL,
     supervisor_staff_no VARCHAR(4),
     dept_code VARCHAR(5) NOT NULL,
+    designation VARCHAR(20) NOT NULL,
     gender gender NOT NULL,
     marital_status marital_status NOT NULL,
     dob DATE NOT NULL,
     employment_type employment_type NOT NULL,
-    highest_qln TEXT NOT NULL
+    highest_qln TEXT NOT NULL,
+    citizenship VARCHAR(10) NOT NULL,
+    grade VARCHAR(5) NOT NULL,
+    year_joined INTEGER NOT NULL,
+    pay DECIMAL(7, 2) NOT NULL,
+    allowance DECIMAL(7, 2) NOT NULL,
+    hourly_rate DECIMAL(7, 2) NOT NULL
 )
 
 CREATE TABLE course (
