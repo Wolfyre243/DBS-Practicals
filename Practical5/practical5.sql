@@ -1,6 +1,10 @@
 -- Q1
-SELECT crse_code, crse_name, crse_fee, COALESCE(lab_fee, 0), (crse_fee + COALESCE(lab_fee, 0)) as fee_per_sem FROM public.course
-ORDER BY fee_per_sem DESC;
+SELECT 
+	crse_code, crse_name, crse_fee, 
+	COALESCE(lab_fee, 0), 
+	(crse_fee + COALESCE(lab_fee, 0)) as "fee per semester" 
+FROM public.course
+ORDER BY "fee per semester" DESC;
 
 -- Q2
 SELECT 
@@ -15,14 +19,15 @@ SELECT
 	dept_name, 
 	max_staff_strength, 
 	no_of_staff, 
-	(max_staff_strength - no_of_staff) as number_understaffed 
+	(max_staff_strength - no_of_staff) as "number understaffed" 
 FROM department
-ORDER BY number_understaffed DESC;
+ORDER BY "number understaffed" DESC;
 
 -- Q4
 SELECT 
-	CONCAT(staff_name, ' (', dept_code, ')') as staff_and_dept
-FROM staff;
+	CONCAT(staff_name, ' (', dept_code, ')') as "staff and department"
+FROM staff
+WHERE staff_no LIKE 'S%';
 
 -- Q5
 SELECT CURRENT_TIMESTAMP;
@@ -30,9 +35,9 @@ SELECT CURRENT_TIMESTAMP;
 -- Q6
 SELECT
 	staff_name, 
-	(DATE_PART('YEAR', CURRENT_TIMESTAMP) - join_yr) as years_in_service
+	(DATE_PART('YEAR', CURRENT_TIMESTAMP) - join_yr) as "years in service"
 FROM staff
-ORDER BY years_in_service DESC;
+ORDER BY "years in service" DESC;
 
 -- Q7
 SELECT 
