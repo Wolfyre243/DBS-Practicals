@@ -33,4 +33,14 @@ BEGIN
 END;
 $$;
 
+DO $$
+DECLARE
+	results NUMERIC[] := '{}';
+BEGIN
+	-- Calling the stored procedure
+	CALL T1(results);
+	-- Displaying the result
+	RAISE NOTICE 'Result: %', results;
+END $$;
+
 
