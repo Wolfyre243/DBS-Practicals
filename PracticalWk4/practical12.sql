@@ -20,20 +20,23 @@ SELECT staff_no FROM staff_backup;
 
 -- Q3
 BEGIN TRANSACTION;
-
+ 
 SAVEPOINT initialState;
-
+ 
 UPDATE staff_backup
-SET staff_no = REPLACE(staff_no, 'S', 'B');
-
+SET staff_no = REPLACE(staff_no, 'S', 'B')
+WHERE staff_no LIKE 'S%';
+ 
 SAVEPOINT updated_staffNo;
-
-UPDATE staff
-SET hourly_rate = COALESCE(hourly_rate, 0) + 20;
-
-ROLLBACK TO SAVEPOINT updated_StaffNo;
-
+ 
+UPDATE staff_backup
+SET hourly_rate = hourly_rate + 30;
+ 
+ROLLBACK TO SAVEPOINT updated_staffNo;
+ 
 SELECT * FROM staff_backup;
+
+COMMIT;	
 
 -- Q4
 CREATE OR REPLACE PROCEDURE transfer_staff(
